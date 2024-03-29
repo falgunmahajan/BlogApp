@@ -1,10 +1,19 @@
 import Banner from "@/components/Home/Banner";
-import Image from "next/image";
+import Categories from "@/components/Home/Categories";
+import Popular from "@/components/Home/Popular/Popular";
+import Posts from "@/components/Home/Posts";
+
 
 export default function Home() {
   return (
-    <main className="h-screen">
+    <main>
    <Banner/>
+   <Categories/>
+   <div className="w-3/4 mx-auto flex justify-between" >
+
+   <Posts/>
+   <Popular/>
+   </div>
     </main>
   );
 }

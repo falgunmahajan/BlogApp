@@ -1,0 +1,28 @@
+[{
+    "category":"News",
+    "icon":"Newspaper"
+},
+{
+    "category":"Sports",
+    "icon":""
+},
+{
+    "category":"Coding",
+    "icon":"code"
+},
+{
+    "category":"Education",
+    "icon":""
+},
+{
+    "category":"Entertainment",
+    "icon":""
+},
+{
+    "category":"Art",
+    "icon":""
+},
+{
+    "category":"Business",
+    "icon":""
+}]
