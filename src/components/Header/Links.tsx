@@ -11,9 +11,9 @@ const Links = () => {
   
   return (
     <div className='flex justify-around text-white'>
-      <Link href="/" className={path==="/"?"p-1 text-pink-500 font-bold":'p-1'}>Home</Link>
-      <Link href="/writers" className={path==="/writers"?"p-1 text-pink-500 font-bold":'p-1'}>Writers</Link>
-      <Button text="Login" link="/login"/>
+      <Link href="/" className={path==="/"?"p-1 text-pink-500 font-bold  hover:font-extrabold":'p-1   hover:font-extrabold'}>Home</Link>
+      <Link href="/writers" className={path==="/writers"?"p-1 text-pink-500 font-bold  hover:font-extrabold":'p-1   hover:font-extrabold'}>Writers</Link>
+      <Button text="Sign Up" link=""/>
     </div>
   )
 }

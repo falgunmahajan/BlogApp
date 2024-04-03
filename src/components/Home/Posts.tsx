@@ -1,6 +1,6 @@
 "use client";
-import { data, fetchPosts } from "@/utils/fetch";
-import { postInterface } from "@/utils/propsTypes";
+import { data, fetchPosts } from "@/utils/client/fetch";
+import { postInterface } from "@/utils/client/propsTypes";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";

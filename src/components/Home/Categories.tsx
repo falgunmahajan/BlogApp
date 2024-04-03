@@ -10,7 +10,7 @@ const Categories = () => {
         <div className='flex justify-between text-white w-3/4'>
         {categories.map(category=>(
          
-       <Button text={category.category}/>
+       <Button text={category.category} link=""/>
       ))}
         </div>
      

@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
-import { data } from '@/utils/fetch';
-import { postInterface } from '@/utils/propsTypes';
+import { data } from '@/utils/client/fetch';
+import { postInterface } from '@/utils/client/propsTypes';
 import Image from 'next/image'
 import  { useEffect, useState } from 'react'
 
