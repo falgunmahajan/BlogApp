@@ -34,7 +34,7 @@ const page = () => {
   return (
     <div>
       <div className="h-[calc(100vh-10rem)] flex items-center justify-center">
-      <div className="w-1/4   shadow-2xl shadow-transparent/50 p-5 rounded-md">
+      <div className="lg:w-1/4 sm:w-1/2   shadow-2xl shadow-transparent/50 p-5 rounded-md">
         <h1 className="text-3xl m-8 text-center text-pink-500 font-bold">Sign Up</h1>
         <form onSubmit={handleSubmit}>
         <div className="relative m-6">

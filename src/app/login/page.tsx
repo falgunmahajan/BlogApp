@@ -1,9 +1,20 @@
+'use client'
+import ButtonLink from "@/components/ButtonLink";
 import { Lock, Mail, Visibility } from "@mui/icons-material";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-import React from "react";
+import React, { useState } from "react";
 
 const page = () => {
+  const [display, setDisplay] = useState("hidden");
+  const router=useRouter()
+
+  const handleClick = (role:String) => {
+    setDisplay("hidden")
+    router.push( `/signup?role=${role}`);
+
+  };
   return (
     <div className="h-[calc(100vh-10rem)] flex items-center justify-center">
       <div className="w-1/4   shadow-2xl shadow-transparent/50 p-5 rounded-md">
@@ -40,12 +51,16 @@ const page = () => {
             Sign In
           </button>
           <div className="mt-8 text-center text-pink-500">Forgot Password?</div>
-          <div className="mt-8 text-center text-base text-gray-400">
-            Don't have an account?
-            <Link className="text-pink-500" href="/signup">
+          <div className="mt-8 flex justify-center  text-base text-gray-400">
+            Don't have an account? 
+           <ButtonLink isOpen={true} isAdminLink={false}>
+           <Link className="text-pink-500 ml-1 h-10" href="">
               {" "}
               Create one
             </Link>
+           </ButtonLink>
+    
+           
           </div>
         </div>
       </div>
