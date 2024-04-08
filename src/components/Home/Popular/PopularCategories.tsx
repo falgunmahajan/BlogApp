@@ -18,7 +18,7 @@ const PopularCategories = () => {
     };
   return (
     <div>
-       <h1 className='text-gray-500 '>Popular Articles</h1>
+       <h1 className='text-gray-500 font-bold'>Popular Articles</h1>
       {
         popularPosts?.slice(0,4)?.map(popularPost=>(
             <div className='flex items-center mt-5' >

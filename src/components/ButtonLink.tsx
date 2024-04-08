@@ -39,14 +39,14 @@ const ButtonLink = ({
             <hr /></> }
             <li
               className="my-2 cursor-pointer"
-              onClick={() => handleClick("Writer")}
+              onClick={() => handleClick("writer")}
             >
               Writer
             </li>
             <hr />
             <li
               className="my-2 cursor-pointer"
-              onClick={() => handleClick("Reader")}
+              onClick={() => handleClick("reader")}
             >
               Reader
             </li>

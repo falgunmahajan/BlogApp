@@ -18,7 +18,7 @@ const PopularWriters = () => {
     };
   return (
     <div>
-       <h1 className='text-gray-500 mt-10 '>Popular Writers</h1>
+       <h1 className='text-gray-500 mt-10 font-bold'>Popular Writers</h1>
       {
         popularWriters?.slice(0,2)?.map(popularWriter=>(
             <div className='flex items-center mt-5' >

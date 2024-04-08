@@ -29,12 +29,12 @@ export const isMatchPassword=(pswd:String,cpswd:String)=>{
 }
 
 export const isValidData = (data:{
-    fullName:"",
-    email:"",
-    mobileNumber:"",
-    password:"",
-    confirmPassword:"",
-    role:""
+    fullName:string,
+    email:string,
+    mobileNumber:string,
+    password:string,
+    confirmPassword:string,
+    role:string
   })=>{
     const errObj:any={}
     if(!isValidFullName(data.fullName)) errObj.fullNameErr="Fullname must contain only letters"

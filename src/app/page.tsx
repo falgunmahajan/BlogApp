@@ -1,7 +1,7 @@
 import Banner from "@/components/Home/Banner";
 import Categories from "@/components/Home/Categories";
-import Popular from "@/components/Home/Popular/Popular";
-import Posts from "@/components/Home/Posts";
+
+import PostsWithPopular from "@/components/Home/PostsWithPopular";
 
 
 export default function Home() {
@@ -9,11 +9,7 @@ export default function Home() {
     <main>
    <Banner/>
    <Categories/>
-   <div className="w-3/4 mx-auto flex justify-between" >
-
-   <Posts/>
-   <Popular/>
-   </div>
+   <PostsWithPopular/>
     </main>
   );
 }

@@ -1,13 +1,32 @@
+import { user } from "@/models/user"
+import { isValidData } from "@/utils/validation/validate"
 import mongoose from "mongoose"
-import { NextApiRequest } from "next"
 import { NextRequest, NextResponse } from "next/server"
+import bcrypt from "bcryptjs"
+import { getToken } from "@/utils/server/jwt/jwtToken"
+
 const url=process.env.DB_URL as string
 
 export const POST=async(req:NextRequest)=>{
    await mongoose.connect(url)
    const data = await req.json()
-   console.log(data);
+   const [boolMsg,msg]=isValidData(data);
+   if(!boolMsg){
+      return NextResponse.json({success:false,message:msg},{status:403})
+   }
+   try {
+      const existingUser = await user.findOne({$or:[{email:data.email},{mobileNumber:data.mobileNumber}]})
+    
+      
+      if(existingUser){
+       return NextResponse.json({success:false,message:"This email or mobile number is already registered. Login to continue"},{status:403})
+      }
+      data.password=await bcrypt.hash(data.password,10)
+      const newUser = await user.create(data);
+      const token = getToken(newUser)
+      return NextResponse.json({success:true,result:newUser, token},{status:201})
    
-
-   return NextResponse.json({success:true,data:data})
+   } catch (error) {
+      return NextResponse.json({message:"Something went wrong"},{status:500})
+   }
 }
