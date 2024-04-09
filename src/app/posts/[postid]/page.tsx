@@ -13,7 +13,7 @@ const page = () => {
 
   return (
     <>
-    <div className="w-4/5 mx-auto flex justify-around items-center p-10 mt-10 h-2/4 ">
+    <div className="w-4/5 mx-auto flex justify-around items-center p-10 mt-10  ">
       <div className="w-1/2 ">
         <div className="text-4xl font-bold mb-5 ">{post?.title}</div>
         <div className="w-1/2 flex justify-between">
@@ -46,7 +46,7 @@ const page = () => {
         />
       </div>
     </div>
-        <div className="w-4/5 mx-auto flex  p-10  h-2/4 ">
+        <div className="w-4/5 mx-auto flex  p-10  ">
         <div className="w-3/5 mr-6">
         {post?.body}
         <Comments/>
