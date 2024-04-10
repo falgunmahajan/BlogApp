@@ -1,12 +1,14 @@
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const ButtonLink = ({
-  children,isOpen, isAdminLink
+  children,isOpen, isAdminLink,text
 }: Readonly<{
   children: React.ReactNode;
   isOpen:Boolean,
-  isAdminLink:Boolean
+  isAdminLink:Boolean,
+  text:String
 }>) => {
   const [display, setDisplay] = useState("hidden");
   const router = useRouter();
@@ -21,34 +23,52 @@ const ButtonLink = ({
       onMouseEnter={() => setDisplay("")}
       onMouseLeave={() => setDisplay("hidden")}
     >
-      {children}
+      {text!=="profile"?children:<Image className='rounded-full aspect-square object-cover' src="/blog.png"  alt="Not available..." width={35} height={30}/>}
      
       { isOpen && (<div
           className={`${display} absolute right-0 z-10 mt-8 shadow px-8 py-3 rounded-md bg-slate-100  text-gray-500`}
         >
           <ul>
-            {isAdminLink &&<><li
+            {isAdminLink  &&<><li
               className="mb-2 cursor-pointer"
-              onClick={() => {
-                setDisplay("hidden");
-                router.push("/admin");
-              }}
+              onClick={() =>
+                { if(text!=="profile")
+                  {
+                    setDisplay("hidden");
+                    router.push("/admin");
+                  }
+                else {
+                  setDisplay("hidden");
+                  router.push("/profile")}
+              }} 
             >
-              Admin
+              {text!=="profile"?"Admin":"Profile"}
+              
             </li>
             <hr /></> }
             <li
               className="my-2 cursor-pointer"
-              onClick={() => handleClick("writer")}
+              onClick={() =>{ if(text!=="profile")
+                handleClick("writer")
+              else {
+                setDisplay("hidden");
+                router.push("/changepassword")}
+            }}
             >
-              Writer
+              {text!=="profile"?"Writer":"Change Password"}
             </li>
             <hr />
             <li
               className="my-2 cursor-pointer"
-              onClick={() => handleClick("reader")}
+              onClick={() =>{ if(text!=="profile")
+                handleClick("reader")
+              else {
+                setDisplay("hidden");
+                router.push("/signout")}
+            }}
             >
-              Reader
+                {text!=="profile"?"Reader":<span className="text-red-600">SignOut</span>}
+              
             </li>
           </ul>
         </div>)

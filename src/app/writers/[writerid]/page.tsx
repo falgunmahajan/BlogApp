@@ -1,6 +1,7 @@
 import Categories from "@/components/Home/Categories";
 
 import PostsWithPopular from "@/components/Home/PostsWithPopular";
+import PostCards from "@/components/PostCards";
 
 
 import Image from "next/image";
@@ -38,7 +39,7 @@ const page = () => {
       <Categories/>
       {/* <div className="w-3/4 m-auto mt-20"> */}
 
-     <PostsWithPopular/>
+     <PostCards/>
       
     </div>
   );

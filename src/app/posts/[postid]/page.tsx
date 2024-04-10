@@ -47,12 +47,12 @@ const page = () => {
       </div>
     </div>
         <div className="w-4/5 mx-auto flex  p-10  ">
-        <div className="w-3/5 mr-6">
+        <div>
         {post?.body}
         <Comments/>
         </div>
        
-            <Popular/>
+            {/* <Popular/> */}
         
         </div>
         </>

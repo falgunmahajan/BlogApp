@@ -6,7 +6,7 @@ const Comments = () => {
     const router=useRouter()
   return (
     <div className='mt-20'>
-        <h1 className='text-xl '>Post Comments</h1>
+        <h1 className='text-xl '> Comments({3})</h1>
        {/* <button className="w-3/4 border border-black rounded-2xl mt-14" onClick={()=>router.push("/login")}>Sign in to comment</button> */}
        <form className='mt-14'>
        <input type='text' placeholder='Add a comment...' className='border w-3/4 py-2 px-3 '/>

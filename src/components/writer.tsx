@@ -1,14 +1,17 @@
+"use client"
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Writer = () => {
+  const router = useRouter();
   return (
-    <div className="w-3/5 mx-auto min-h-[calc(100vh-10rem)]">
- 
-      <div className="flex flex-wrap ">
-      <div className="font-bold text-2xl text-center">Writers</div>
-        {[0, 1, 2, 3, 4].map((item) => (
-          <div className="flex items-center rounded-md shadow-sm shadow-transparent/50 py-5 pr-20 pl-5 mx-5 ">
+    <div className="w-3/4 mx-auto my-20 min-h-[calc(100vh-10rem)]">
+ <div className="font-bold text-4xl text-center text-pink-500 ">Writers</div>
+      <div className="flex flex-wrap mt-10 ">
+      
+        {[0, 1, 2, 3, 4,5,6,7,8,9].map((item) => (
+          <div className="flex items-center rounded-md shadow-sm shadow-transparent/50 py-5 pr-20 pl-5 mx-16 my-8" onClick={()=>router.push(`/writers/1`)}>
             <Image
               className=" rounded-full aspect-square object-cover mr-4"
               src="/blog.png"

@@ -20,11 +20,12 @@ const Posts = () => {
   };
   return (
     <div className="w-3/5  ">
-      {category ?<h1 className="text-4xl font-bold  mb-5">{category} Posts</h1>  :<h1 className="text-2xl font-bold mb-5"></h1> }
+      {/* {category ?<h1 className="text-4xl font-bold  mb-5">{category} Posts</h1>  : */}
+      <h1 className="text-2xl font-bold mb-5">Recents Posts</h1> 
+      {/* } */}
    
       {posts ? (
-        posts.slice(0,3).map((post) => (
-//      
+        posts.slice(0,3).map((post) => (   
           <div className=" flex justify-evenly mb-20 ">
             <div className="w-1/2">
               <Image

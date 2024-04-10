@@ -15,7 +15,8 @@ const Links = () => {
       
       <Link href="/" className={path==="/"?"p-1 text-pink-500 font-bold  hover:font-extrabold":'p-1   hover:font-extrabold'}>Home</Link>
       <Link href="/writers" className={path==="/writers"?"p-1 text-pink-500 font-bold  hover:font-extrabold":'p-1   hover:font-extrabold'}>Writers</Link>
-      <Button text="Sign Up" link=""/>
+      {/* <Button text="Sign Up" link=""/> */}
+      <Button text="profile" link="/"/>
     </div>
   )
 }

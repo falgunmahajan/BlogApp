@@ -63,7 +63,7 @@ const page = () => {
             type="text"
             id="input-group-1"
             className="border text-sm rounded-lg shadow shadow-transparent/40 block w-full ps-12 p-2.5 "
-            placeholder="Email or Mobile number"
+            placeholder="Email or Mobile number *"
             onChange={(e) =>{
               if((/^[0-9]{10,}$/).test(e.target.value)){
                  dispatch({
@@ -93,7 +93,7 @@ const page = () => {
             id="input-group-1"
             name="password"
             className="border text-sm rounded-lg shadow shadow-transparent/40 block w-full ps-12 p-2.5 "
-            placeholder="Password"
+            placeholder="Password *"
             onChange={(e) =>
               dispatch({
                 type: "change",
@@ -123,7 +123,7 @@ const page = () => {
           <div className="mt-8 text-center text-pink-500">Forgot Password?</div>
           <div className="mt-8 flex justify-center  text-base text-gray-400">
             Don't have an account? 
-           <ButtonLink isOpen={true} isAdminLink={false}>
+           <ButtonLink isOpen={true} isAdminLink={false} text="">
            <Link className="text-pink-500 ml-1 h-10" href="">
               {" "}
               Create one
