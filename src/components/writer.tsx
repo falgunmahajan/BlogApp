@@ -11,7 +11,7 @@ const Writer = () => {
       <div className="flex flex-wrap mt-10 ">
       
         {[0, 1, 2, 3, 4,5,6,7,8,9].map((item) => (
-          <div className="flex items-center rounded-md shadow-sm shadow-transparent/50 py-5 pr-20 pl-5 mx-16 my-8" onClick={()=>router.push(`/writers/1`)}>
+          <div className="flex items-center cursor-pointer rounded-md shadow-sm shadow-transparent/50 py-5 pr-20 pl-5 mx-16 my-8" onClick={()=>router.push(`/writers/1`)}>
             <Image
               className=" rounded-full aspect-square object-cover mr-4"
               src="/blog.png"

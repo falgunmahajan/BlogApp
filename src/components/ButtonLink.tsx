@@ -1,14 +1,19 @@
+import { Delete, DeleteOutline, Lock, Logout, LogoutOutlined, Person } from "@mui/icons-material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { AiOutlineLogout } from "react-icons/ai";
 
 const ButtonLink = ({
-  children,isOpen, isAdminLink,text
+  children,
+  isOpen,
+  isAdminLink,
+  text,
 }: Readonly<{
   children: React.ReactNode;
-  isOpen:Boolean,
-  isAdminLink:Boolean,
-  text:String
+  isOpen: Boolean;
+  isAdminLink: Boolean;
+  text: String;
 }>) => {
   const [display, setDisplay] = useState("hidden");
   const router = useRouter();
@@ -23,56 +28,101 @@ const ButtonLink = ({
       onMouseEnter={() => setDisplay("")}
       onMouseLeave={() => setDisplay("hidden")}
     >
-      {text!=="profile"?children:<Image className='rounded-full aspect-square object-cover' src="/blog.png"  alt="Not available..." width={35} height={30}/>}
-     
-      { isOpen && (<div
-          className={`${display} absolute right-0 z-10 mt-8 shadow px-8 py-3 rounded-md bg-slate-100  text-gray-500`}
+      {text !== "profile" ? (
+        children
+      ) : (
+        <Image
+          className="rounded-full aspect-square object-cover"
+          src="/blog.png"
+          alt="Not available..."
+          width={35}
+          height={30}
+        />
+      )}
+
+      {isOpen && (
+        <div
+          className={`${display} absolute right-0 z-10 mt-8 w-${text==="profile" && 44} shadow  py-3 rounded-md bg-slate-100  text-gray-500`}
         >
           <ul>
-            {isAdminLink  &&<><li
-              className="mb-2 cursor-pointer"
-              onClick={() =>
-                { if(text!=="profile")
-                  {
-                    setDisplay("hidden");
-                    router.push("/admin");
-                  }
+            {isAdminLink && (
+              <>
+                <li
+                  className={`my-2 cursor-pointer px-${text==="profile" ?4:8}`}
+                  onClick={() => {
+                    if (text !== "profile") {
+                      setDisplay("hidden");
+                      router.push("/admin");
+                    } else {
+                      setDisplay("hidden");
+                      router.push("/profile");
+                    }
+                  }}
+                >
+                  {text !== "profile" ? (
+                    "Admin"
+                  ) : (
+                    <span className="flex items-center">
+                      <Person /> <span className="ml-2 text-sm">Profile</span>
+                    </span>
+                  )}
+                </li>
+                {text !== "profile" && <hr />}
+              </>
+            )}
+            <li
+              className={`my-2 cursor-pointer px-${text==="profile" ?4:8}`}
+              onClick={() => {
+                if (text !== "profile") handleClick("writer");
                 else {
                   setDisplay("hidden");
-                  router.push("/profile")}
-              }} 
+                  router.push("/changepassword");
+                }
+              }}
             >
-              {text!=="profile"?"Admin":"Profile"}
-              
+              {text !== "profile" ? (
+                "Writer"
+              ) : (
+                <span className="flex items-center">
+                  <Lock /> <span className="ml-2 text-sm">Change Password</span>
+                </span>
+              )}
             </li>
-            <hr /></> }
+            {text !== "profile" && <hr />}
             <li
-              className="my-2 cursor-pointer"
-              onClick={() =>{ if(text!=="profile")
-                handleClick("writer")
-              else {
-                setDisplay("hidden");
-                router.push("/changepassword")}
-            }}
+              className={`my-2 cursor-pointer px-${text==="profile" ?4:8}`}
+              onClick={() => {
+                if (text !== "profile") handleClick("reader");
+                else {
+                  setDisplay("hidden");
+                  router.push("/signout");
+                }
+              }}
             >
-              {text!=="profile"?"Writer":"Change Password"}
+              {text !== "profile" ? (
+                "Reader"
+              ) : (
+                <span className=" flex items-center">
+                  <LogoutOutlined/> <span className="ml-2 text-sm">SignOut</span>
+                </span>
+              )}
             </li>
-            <hr />
-            <li
-              className="my-2 cursor-pointer"
-              onClick={() =>{ if(text!=="profile")
-                handleClick("reader")
-              else {
-                setDisplay("hidden");
-                router.push("/signout")}
-            }}
-            >
-                {text!=="profile"?"Reader":<span className="text-red-600">SignOut</span>}
-              
-            </li>
+            {text === "profile" && (
+              <>
+                <hr className="border bg-gray-500 my-3" />
+                <li className="my-2 cursor-pointer px-4 text-xs">
+                  Danger zone
+                </li>
+                <li className="my-3 cursor-pointer px-4 text-xs">
+                <span className="text-red-600 flex items-center">
+                  <DeleteOutline/> <span className="ml-2 text-sm">Delete Account</span>
+                </span>
+                </li>
+              </>
+            )}
           </ul>
-        </div>)
-   }
+        </div>
+      )}
     </div>
   );
 };

@@ -20,7 +20,7 @@ const PostCards = () => {
   };
   return (
     <div className="w-3/4  mx-auto my-10" >
-      <h1 className="text-4xl font-bold text-center text-pink-500   mb-5">{category} Posts</h1>
+      <h1 className="text-4xl font-bold text-center text-pink-500   mb-5">{category} </h1>
       <div className="flex flex-wrap  ">
       {posts ? (
         posts.slice(0,8).map((post) => (

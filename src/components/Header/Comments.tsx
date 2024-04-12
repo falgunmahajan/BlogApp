@@ -5,15 +5,23 @@ import React from 'react'
 const Comments = () => {
     const router=useRouter()
   return (
-    <div className='mt-20'>
-        <h1 className='text-xl '> Comments({3})</h1>
-       {/* <button className="w-3/4 border border-black rounded-2xl mt-14" onClick={()=>router.push("/login")}>Sign in to comment</button> */}
-       <form className='mt-14'>
-       <input type='text' placeholder='Add a comment...' className='border w-3/4 py-2 px-3 '/>
-       <button className='border rounded px-4 py-2 bg-slate-400 ml-2'>Post</button>
+    <div>
+       
+       {/* <button className="w-3/4 border border-gray-500 rounded-2xl mt-10  text-gray-600" onClick={()=>router.push("/login")}>Sign in to comment</button> */}
+       <div className='mt-14 border p-4 rounded-2xl border-gray-400'>
+       <form>
+       {/* <input type='text' placeholder='Add a comment...' className='border rounded-lg w-full py-2 px-3  '/> */}
+       <textarea id="message" rows={3} className="border-2 p-2.5 w-full text-sm bg-gray-50  rounded-lg " placeholder="Add a comment..."></textarea>
+       <div className='flex justify-between mt-5 items-center'>
+       <div className='text-sm text-gray-400'>200 characters remaining</div>
+       <button className='border rounded-lg px-4 py-2 bg-slate-400 ml-2'>Submit</button>
+       </div>
        </form>
-      
-       <div className="flex items-center w-1/2 mt-14">
+       </div>
+       
+       {/* <h1 className='text-base mt-8 '> Comments <span className='border-2 px-2 py-1'>3</span> </h1> */}
+       <div className='mt-5 '>No comments yet</div>
+       {/* <div className="flex items-center w-1/2 mt-8">
           <div className="w-1/6">
             <Image
               className="rounded-full aspect-square object-cover"
@@ -32,7 +40,7 @@ const Comments = () => {
                 <button className='mr-3 text-red-600'>Delete</button>
             </div>
           </div>
-        </div>
+        </div> */}
     </div>
   )
 }
