@@ -1,7 +1,7 @@
 import Categories from "@/components/Home/Categories";
 
 import PostsWithPopular from "@/components/Home/PostsWithPopular";
-import PostCards from "@/components/PostCards";
+import PostCards from "@/components/Post/PostCards";
 
 
 import Image from "next/image";

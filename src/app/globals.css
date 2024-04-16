@@ -32,3 +32,8 @@
     text-wrap: balance;
   }
 }
+
+.content a {
+  color: blue;
+  text-decoration: underline;
+}

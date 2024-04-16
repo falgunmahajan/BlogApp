@@ -24,7 +24,7 @@ const ButtonLink = ({
   };
   return (
     <div
-      className="flex flex-col relative "
+      className="flex flex-col relative  "
       onMouseEnter={() => setDisplay("")}
       onMouseLeave={() => setDisplay("hidden")}
     >
@@ -32,7 +32,7 @@ const ButtonLink = ({
         children
       ) : (
         <Image
-          className="rounded-full aspect-square object-cover"
+          className="rounded-full aspect-square object-cover mx-3"
           src="/blog.png"
           alt="Not available..."
           width={35}
@@ -42,13 +42,13 @@ const ButtonLink = ({
 
       {isOpen && (
         <div
-          className={`${display} absolute right-0 z-10 mt-8 w-${text==="profile" && 44} shadow  py-3 rounded-md bg-slate-100  text-gray-500`}
+          className={`${display} absolute z-10 right-0  mt-8 w-${text==="profile" ?44:"full"}shadow  py-3 rounded-md bg-slate-100  text-gray-500`}
         >
           <ul>
             {isAdminLink && (
               <>
                 <li
-                  className={`my-2 cursor-pointer px-${text==="profile" ?4:8}`}
+                  className={`my-2 cursor-pointer px-${text==="profile" ?4:6}`}
                   onClick={() => {
                     if (text !== "profile") {
                       setDisplay("hidden");
@@ -71,7 +71,7 @@ const ButtonLink = ({
               </>
             )}
             <li
-              className={`my-2 cursor-pointer px-${text==="profile" ?4:8}`}
+              className={`my-2 cursor-pointer px-${text==="profile" ?4:6}`}
               onClick={() => {
                 if (text !== "profile") handleClick("writer");
                 else {
@@ -90,7 +90,7 @@ const ButtonLink = ({
             </li>
             {text !== "profile" && <hr />}
             <li
-              className={`my-2 cursor-pointer px-${text==="profile" ?4:8}`}
+              className={`my-2 cursor-pointer px-${text==="profile" ?4:6}`}
               onClick={() => {
                 if (text !== "profile") handleClick("reader");
                 else {

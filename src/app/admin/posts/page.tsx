@@ -7,15 +7,17 @@ const page = () => {
     const [display,setDisplay]=useState<Number|null>(null)
     const router = useRouter()
   return (
-    <div className='w-3/4 mx-auto my-10 min-h-[calc(100vh-10rem)]'>
-      {/* <div className="relative  sm:rounded-lg"> */}
-    <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
+    <div className=' w-11/12 mx-auto my-10 min-h-[calc(100vh-10rem)]'>
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
     <caption className=" text-lg font-semibold text-left rtl:text-right text-gray-900">
     Posts(4 of 4)
            
         </caption>
         <thead className="text-xs text-gray-700 uppercase ">
             <tr className=' border'>
+            <th scope="col" className="px-6 py-3">
+                    Writer
+                </th>
                 <th scope="col" className="px-6 py-3">
                     Post Title
                 </th>
@@ -47,6 +49,9 @@ const page = () => {
         <tbody>
             {data?data.map((item,index)=>(
  <tr className="bg-white border hover:bg-gray-300 " >
+    <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap cursor-pointer" onClick={()=>router.push(`/writers/posts/${item.id}`)}>
+   Falgun Mahajan
+ </th>
  <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap cursor-pointer" onClick={()=>router.push(`/writers/posts/${item.id}`)}>
     {item.title}
  </th>
@@ -71,17 +76,15 @@ const page = () => {
     <MoreVert/>
     <div className={`absolute ${display!==index&&"hidden"} z-10 mt-1 shadow w-36 right-0  py-3  bg-slate-100  text-gray-500`}>
         <ul>
-            <li className='px-4 my-2'>
+            <li className='px-4 my-2 cursor-pointer'>
                <SettingsOutlined fontSize='small'/> Disable
             </li>
-            <li className='px-4 my-2 cursor-pointer' onClick={()=>router.push("/writers/editpost")}>
-               <Edit fontSize='small'/> Edit Post
-            </li>
+          
             <hr className='border bg-gray-500 my-3'/>
             <li className='px-4 text-xs'>
                 Danger zone
             </li>
-            <li className='px-4 text-red-600 mt-2'>
+            <li className='px-4 text-red-600 mt-2 cursor-pointer'>
               <DeleteOutlineSharp fontSize='small'/> Delete Post
             </li>
         </ul>
@@ -93,7 +96,6 @@ const page = () => {
            
         </tbody>
     </table>
-{/* </div> */}
     </div>
   )
 }

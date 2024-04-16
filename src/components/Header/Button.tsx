@@ -10,7 +10,7 @@ const router=useRouter()
   return (
     <ButtonLink isOpen={text==="Sign Up" || text==="profile"} isAdminLink={true} text={text}>
     
-      <button className="bg-pink-500 rounded-lg py-1 px-3 hover:bg-blue-400" onClick={()=>{
+      <button className="bg-pink-500 mx-3 rounded-lg py-1 px-3 hover:bg-blue-400" onClick={()=>{
         if(text!=="Sign Up" || text!=="profile"){
           router.push(link)
         }

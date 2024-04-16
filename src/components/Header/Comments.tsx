@@ -14,7 +14,7 @@ const Comments = () => {
        <textarea id="message" rows={3} className="border-2 p-2.5 w-full text-sm bg-gray-50  rounded-lg " placeholder="Add a comment..."></textarea>
        <div className='flex justify-between mt-5 items-center'>
        <div className='text-sm text-gray-400'>200 characters remaining</div>
-       <button className='border rounded-lg px-4 py-2 bg-slate-400 ml-2'>Submit</button>
+       <button className='border rounded-lg px-4 py-2 bg-blue-500 text-white ml-2'>Submit</button>
        </div>
        </form>
        </div>
