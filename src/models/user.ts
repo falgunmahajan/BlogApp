@@ -10,6 +10,6 @@ const userSchema=new mongoose.Schema({
         enum:["admin", "writer", "reader"]
 
     }
-})
+},{timestamps:true})
 
 export const user=mongoose.models.user|| mongoose.model("user",userSchema)
