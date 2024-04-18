@@ -1,4 +1,4 @@
-import { user } from "@/models/user"
+import { User } from "@/models/user"
 import { isValidData } from "@/utils/validation/validate"
 import mongoose from "mongoose"
 import { NextRequest, NextResponse } from "next/server"
@@ -15,14 +15,14 @@ export const POST=async(req:NextRequest)=>{
       return NextResponse.json({success:false,message:msg},{status:403})
    }
    try {
-      const existingUser = await user.findOne({$or:[{email:data.email},{mobileNumber:data.mobileNumber}]})
+      const existingUser = await User.findOne({$or:[{email:data.email},{mobileNumber:data.mobileNumber}]})
     
       
       if(existingUser){
        return NextResponse.json({success:false,message:"This email or mobile number is already registered. Login to continue"},{status:403})
       }
       data.password=await bcrypt.hash(data.password,10)
-      const newUser = await user.create(data);
+      const newUser = await User.create(data);
       const token = getToken(newUser)
       return NextResponse.json({success:true,result:newUser, token},{status:201})
    

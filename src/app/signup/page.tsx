@@ -24,7 +24,7 @@ import React, { SyntheticEvent, useReducer, useState } from "react";
 const page = () => {
   const role = useSearchParams().get("role");
   const initialState = {
-    fullName: "",
+    name: "",
     email: "",
     mobileNumber: "",
     password: "",
@@ -96,7 +96,7 @@ const page = () => {
                   className={`border ${
                     !err.fullNameError ? "" : "border-red-500"
                   } text-sm rounded-lg shadow shadow-transparent/40 block w-full ps-12 p-2.5 `}
-                  name="fullName"
+                  name="name"
                   placeholder="Full Name *"
                   onBlur={(e) => {
                     if (!isValidFullName(e.target.value))

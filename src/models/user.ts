@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
 
 const userSchema=new mongoose.Schema({
-    fullName:String,
+    name:String,
     email:String,
     mobileNumber:String,
     password:String,
+    image:String,
     role:{
         type:String,
         enum:["admin", "writer", "reader"]
@@ -12,4 +13,4 @@ const userSchema=new mongoose.Schema({
     }
 },{timestamps:true})
 
-export const user=mongoose.models.user|| mongoose.model("user",userSchema)
+export const User=mongoose.models.user|| mongoose.model("user",userSchema)

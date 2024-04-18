@@ -2,10 +2,12 @@
 import ButtonLink from "@/components/ButtonLink";
 import { Lock, Mail, Visibility, VisibilityOff } from "@mui/icons-material";
 import axios from "axios";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import React, { SyntheticEvent, useReducer, useState } from "react";
+import React, { SyntheticEvent, useEffect, useReducer, useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 
 const page = () => {
   const initialState = {
@@ -28,17 +30,37 @@ const page = () => {
   const [visiblity, setVisibility] = useState(false);
   const router=useRouter()
   const [errMsg,setErrMsg]=useState("")
-
+  const {data,status}=useSession()
+// useEffect(()=>{
+//   console.log(data,status);
+  
+//   if(status==="authenticated")router.push("/")
+// },[data])
 
   const handleSubmit = async (e: SyntheticEvent)=>{
     e.preventDefault()
     try {
       setErrMsg("")
-      const res = await axios.post(`/api/auth/login`, state);
-      localStorage.setItem("token", res.data.token);
-      router.push("/");
+      const res=await signIn("credentials",{
+        redirect:false,
+        email:state.email,
+        password:state.password
+      })
+      console.log(res);
+      
+      console.log(data);
+      if(res?.status===200){}
+      else{
+        setErrMsg("Invalid Email or Password")
+      }
+      
+      // const res = await axios.post(`/api/auth/login`, state);
+      // localStorage.setItem("token", res.data.token);
+      // router.push("/");
     } catch (error:any) {
-      setErrMsg(error.response.data.message)
+      console.log(error);
+      
+      setErrMsg("Something went wrong")
 
     }
   }
@@ -120,6 +142,13 @@ const page = () => {
           </button>
           </div>
           </form>
+          <div className="flex m-6 items-center gap-2">
+            <div className=" bg-slate-300 h-0.5 w-1/2 "></div>
+            <span className="text-slate-400">OR</span>
+            <div className=" bg-slate-300 h-0.5 w-1/2 "></div>
+          </div>
+          <div className="m-6 p-2 border rounded-3xl shadow shadow-transparent/40 flex gap-3 items-center justify-center" onClick={async()=>{await signIn("google");console.log(data);
+          }}><FcGoogle fontSize="large"/> <span className="text-sm">Sign in with Google</span></div>
           <div className="mt-8 text-center text-pink-500">Forgot Password?</div>
           <div className="mt-8 flex justify-center  text-base text-gray-400">
             Don't have an account? 
