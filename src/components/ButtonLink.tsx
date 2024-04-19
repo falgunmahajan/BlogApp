@@ -1,6 +1,7 @@
 import { Delete, DeleteOutline, Lock, Logout, LogoutOutlined, Person } from "@mui/icons-material";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 
@@ -20,7 +21,8 @@ const ButtonLink = ({
 
   const handleClick = (role: String) => {
     setDisplay("hidden");
-    router.push(`/signup?role=${role}`);
+    if(text=="Sign Up")router.push(`/signup?role=${role}`);
+   else router.push(`/login?role=${role}`);
   };
   return (
     <div
@@ -37,6 +39,7 @@ const ButtonLink = ({
           alt="Not available..."
           width={35}
           height={30}
+          
         />
       )}
 
@@ -95,7 +98,7 @@ const ButtonLink = ({
                 if (text !== "profile") handleClick("reader");
                 else {
                   setDisplay("hidden");
-                  router.push("/signout");
+                  signOut()
                 }
               }}
             >

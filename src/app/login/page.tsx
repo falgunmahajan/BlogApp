@@ -4,7 +4,7 @@ import { Lock, Mail, Visibility, VisibilityOff } from "@mui/icons-material";
 import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import React, { SyntheticEvent, useEffect, useReducer, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
@@ -31,11 +31,12 @@ const page = () => {
   const router=useRouter()
   const [errMsg,setErrMsg]=useState("")
   const {data,status}=useSession()
-// useEffect(()=>{
-//   console.log(data,status);
+  const role = useSearchParams().get("role");
+useEffect(()=>{
+  console.log(data,status);
   
-//   if(status==="authenticated")router.push("/")
-// },[data])
+  if(status==="authenticated")router.push("/")
+},[data,status])
 
   const handleSubmit = async (e: SyntheticEvent)=>{
     e.preventDefault()
@@ -54,9 +55,7 @@ const page = () => {
         setErrMsg("Invalid Email or Password")
       }
       
-      // const res = await axios.post(`/api/auth/login`, state);
-      // localStorage.setItem("token", res.data.token);
-      // router.push("/");
+     
     } catch (error:any) {
       console.log(error);
       
@@ -74,7 +73,7 @@ const page = () => {
         </div>
       </div> }
         <h1 className="text-3xl m-8 text-center text-pink-500 font-bold">
-          Sign In
+          Sign In as {role}
         </h1>
         <form onSubmit={handleSubmit}>
         <div className="relative m-6">
@@ -147,12 +146,12 @@ const page = () => {
             <span className="text-slate-400">OR</span>
             <div className=" bg-slate-300 h-0.5 w-1/2 "></div>
           </div>
-          <div className="m-6 p-2 border rounded-3xl shadow shadow-transparent/40 flex gap-3 items-center justify-center" onClick={async()=>{await signIn("google");console.log(data);
+          <div className="m-6 p-2 border  rounded-3xl shadow shadow-transparent/40 flex gap-3 items-center justify-center " onClick={async(e)=>{e.preventDefault();await signIn("google");console.log(data);
           }}><FcGoogle fontSize="large"/> <span className="text-sm">Sign in with Google</span></div>
           <div className="mt-8 text-center text-pink-500">Forgot Password?</div>
           <div className="mt-8 flex justify-center  text-base text-gray-400">
             Don't have an account? 
-           <ButtonLink isOpen={true} isAdminLink={false} text="">
+           <ButtonLink isOpen={true} isAdminLink={false} text="Sign Up">
            <Link className="text-pink-500 ml-1 h-10" href="">
               {" "}
               Create one

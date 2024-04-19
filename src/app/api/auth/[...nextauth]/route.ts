@@ -1,16 +1,35 @@
 import { User } from "@/models/user";
 import mongoose from "mongoose";
-import NextAuth, { User as AuthUser, Session, Account } from "next-auth";
+import NextAuth, {
+  User as AuthUser,
+  Session,
+  Account,
+  Profile,
+  NextAuthOptions,
+} from "next-auth";
 import { JWT } from "next-auth/jwt";
-import GoogleProvider from "next-auth/providers/Google";
+import GoogleProvider,{GoogleProfile} from "next-auth/providers/Google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { getToken } from "@/utils/server/jwt/jwtToken";
+
 const url = process.env.DB_URL as string;
-const authOptions = {
+const authOptions : NextAuthOptions = {
+session:{
+strategy:"jwt",
+maxAge:1 * 24 * 60 * 60
+},
+
   providers: [
     GoogleProvider({
+      profile(profile:GoogleProfile){
+        console.log("PROFILE",profile);
+        
+        return {
+          ...profile,
+          id:profile.sub
+        }
+      },
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
@@ -45,27 +64,39 @@ const authOptions = {
     }),
   ],
   callbacks: {
-    async signIn({user,account}:{user:AuthUser,account:Account}){
-        if(account.provider==="google"){
-            try {
-            await mongoose.connect(url);
-           console.log(user);
+    async signIn({
+      user,
+      account,
+    }: {
+      user: AuthUser;
+      account: Account | null;
+    }) {
+      if (account?.provider === "credentials") {
+        return true;
+      }
+      if (account?.provider === "google") {
+        try {
+          await mongoose.connect(url);
+          const existingUser = await User.findOne({ email: user.email });
+          if (!existingUser) {
+            const newUser = await User.create(user);
+            const token = getToken(newUser);
            
-              const existingUser = await User.findOne({ email: user.email });
-              if (!existingUser) {
-                const newUser = await User.create(user);
-                const token = getToken(newUser)
-              return true;
-        }}catch(err:any){
-          throw new Error(err)
+            newUser.accessToken = token;
+            return newUser;
+          }
+          const token = getToken(existingUser);
+          existingUser.accessToken = token;
+          return existingUser;
+        } catch (err: any) {
+          return false;
         }
-        
-    }
-    return true;
+      }
+      return true;
     },
-    async jwt({ token, user }: { token: any; user: any }) {
-        // console.log("hello");
-        
+    async jwt({ token, user,account }: { token: JWT; user: AuthUser ,account:Account|null }) {
+   
+
       return { ...token, ...user };
     },
     async session({
@@ -77,13 +108,14 @@ const authOptions = {
       token: any;
       user: any;
     }) {
-      
-        
+     
       session.user = token._doc;
       session.accessToken = token.accessToken;
       return session;
     },
   },
+
+ 
 };
 const handler = NextAuth(authOptions);
 

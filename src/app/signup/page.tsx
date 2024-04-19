@@ -1,4 +1,5 @@
 "use client";
+import ButtonLink from "@/components/ButtonLink";
 import {
   isMatchPassword,
   isValidContact,
@@ -267,12 +268,27 @@ const page = () => {
               </button>
             </div>
           </form>
-          <div className="m-8 text-center text-base text-gray-400">
-            Already have an account?
-            <Link className="text-pink-500" href="/login">
+          <div className="mt-8 flex justify-center  text-base text-gray-400">
+          Already have an account?
+           
+           <ButtonLink isOpen={true} isAdminLink={false} text="Sign In">
+           <Link className="text-pink-500 ml-1 h-10" href="/login">
               {" "}
               Sign In
             </Link>
+           </ButtonLink>
+          {/* <div className="m-8 text-center text-base text-gray-400">
+          Already have an account?
+            <ButtonLink isOpen={true} isAdminLink={false} text="Sign In">
+           <Link className="text-pink-500 ml-1 h-10" href="/login">
+              {" "}
+              Sign In
+            </Link>
+           </ButtonLink> */}
+            {/* <Link className="text-pink-500" href="/login">
+              {" "}
+              
+            </Link> */}
           </div>
         </div>
       </div>
