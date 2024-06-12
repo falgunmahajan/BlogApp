@@ -21,8 +21,7 @@ const ButtonLink = ({
 
   const handleClick = (role: String) => {
     setDisplay("hidden");
-    if(text=="Sign Up")router.push(`/signup?role=${role}`);
-   else router.push(`/login?role=${role}`);
+   router.push(`/login`);
   };
   return (
     <div
@@ -48,8 +47,7 @@ const ButtonLink = ({
           className={`${display} absolute z-10 right-0  mt-8 w-${text==="profile" ?44:"full"}shadow  py-3 rounded-md bg-slate-100  text-gray-500`}
         >
           <ul>
-            {isAdminLink && (
-              <>
+        
                 <li
                   className={`my-2 cursor-pointer px-${text==="profile" ?4:6}`}
                   onClick={() => {
@@ -71,8 +69,7 @@ const ButtonLink = ({
                   )}
                 </li>
                 {text !== "profile" && <hr />}
-              </>
-            )}
+            
             <li
               className={`my-2 cursor-pointer px-${text==="profile" ?4:6}`}
               onClick={() => {

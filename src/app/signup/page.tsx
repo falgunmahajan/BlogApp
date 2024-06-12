@@ -61,8 +61,7 @@ const page = () => {
       try {
         setErrMsg("")
         const res = await axios.post(`/api/auth/signup`, state);
-        localStorage.setItem("token", res.data.token);
-        router.push("/");
+        router.push("/login");
       } catch (error:any) {
         setErrMsg(error.response.data.message)
       }

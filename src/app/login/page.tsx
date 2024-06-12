@@ -31,7 +31,6 @@ const page = () => {
   const router=useRouter()
   const [errMsg,setErrMsg]=useState("")
   const {data,status}=useSession()
-  const role = useSearchParams().get("role");
 useEffect(()=>{
   console.log(data,status);
   
@@ -73,7 +72,7 @@ useEffect(()=>{
         </div>
       </div> }
         <h1 className="text-3xl m-8 text-center text-pink-500 font-bold">
-          Sign In as {role}
+          Sign In 
         </h1>
         <form onSubmit={handleSubmit}>
         <div className="relative m-6">
@@ -146,17 +145,17 @@ useEffect(()=>{
             <span className="text-slate-400">OR</span>
             <div className=" bg-slate-300 h-0.5 w-1/2 "></div>
           </div>
-          <div className="m-6 p-2 border  rounded-3xl shadow shadow-transparent/40 flex gap-3 items-center justify-center " onClick={async(e)=>{e.preventDefault();await signIn("google");console.log(data);
-          }}><FcGoogle fontSize="large"/> <span className="text-sm">Sign in with Google</span></div>
+          <div className="m-6 p-2 border  rounded-3xl shadow shadow-transparent/40 flex gap-3 items-center justify-center " onClick={async(e)=>{e.preventDefault();await signIn("google",{role:"writer"});console.log(data);
+          }}><FcGoogle fontSize="large"/> <span className="text-sm cursor-pointer">Sign in with Google</span></div>
           <div className="mt-8 text-center text-pink-500">Forgot Password?</div>
           <div className="mt-8 flex justify-center  text-base text-gray-400">
             Don't have an account? 
-           <ButtonLink isOpen={true} isAdminLink={false} text="Sign Up">
-           <Link className="text-pink-500 ml-1 h-10" href="">
+           {/* <ButtonLink isOpen={true} isAdminLink={false} text="Sign Up"> */}
+           <Link className="text-pink-500 ml-1 h-10" href="/signup">
               {" "}
               Create one
             </Link>
-           </ButtonLink>
+           {/* </ButtonLink> */}
     
            
           

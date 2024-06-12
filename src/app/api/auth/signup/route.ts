@@ -23,8 +23,7 @@ export const POST=async(req:NextRequest)=>{
       }
       data.password=await bcrypt.hash(data.password,10)
       const newUser = await User.create(data);
-      const token = getToken(newUser)
-      return NextResponse.json({success:true,result:newUser, token},{status:201})
+      return NextResponse.json({success:true,result:newUser},{status:201})
    
    } catch (error) {
       return NextResponse.json({message:"Something went wrong"},{status:500})
